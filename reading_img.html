@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>致不甘平凡的你</title>
+		<link rel="stylesheet" href="css/lab.css" />
+		<link rel="stylesheet" href="css/iconfont.css"/>
+		<link rel="stylesheet" href="css/basic.css"/>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/turn.js"></script>
+		<script src="js/common.js"></script>
+	</head>
+
+	<body>
+		<header id="read_header">
+		  <input id="btn_back" type="image" src="images/arraw.png" width="30" style="margin-left: -0.35rem;" />
+		</header>
+		
+		<section id="main_text">
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/031722104939_0yl_1.png)"></div>
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/031722104939_0yl_2.png)"></div>
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/031722104939_0yl_3.png)"></div>
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/031722104939_0yl_4.png)"></div>
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/031722104939_0yl_5.png)"></div>
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/031722104939_0yl_6.png)"></div>
+		</section>
+		<div id="btn_area">
+			<button id="back_start" class="btn-common">返回</button>
+			<button id="next_section" class="btn-common">下一页</button>
+		</div>
+
+		<!--底部用户信息-->
+		<footer id="user_info">
+		  <button id="btn_menu"> 
+			<i class="iconfont icon-mulu"></i>
+		  	<div class="menu-txt">目录</div>
+		  </button>
+		  <div id="infos"> <img id="user_head" src="images/head.png"/>
+			<div id="info_area">
+			  <div>冷饮部：员工姓名</div>
+			  <div>正在阅读：<span id="t">00:00</span></div>
+			</div>
+		  </div>
+		</footer>
+
+		
+		<!--弹出目录-->
+		<div id="slide_list">
+			<header>至不平凡的你</header>
+			<ul id="read_mlist">
+			  <li><a href="reading.html" class="mlist-active">卷首语</a></li>
+			  <li><a href="reading.html">素养元素-积极进取</a></li>
+			  <li><a href="reading.html">素养元素-敏思笃行</a></li>
+			  <li><a href="reading.html">素养元素-诚信正直</a></li>
+			  <li><a href="reading.html">素养元素-谦逊务实</a></li>
+			  <li><a href="reading.html">素养元素-热情友善</a></li>
+			  <li><a href="reading.html">素养元素-有礼有节</a></li>
+			  <li><a href="reading.html">素养元素-思恩敬畏</a></li>
+			  <li><a href="reading.html">素养元素-行善利他</a></li>
+			  <li><a href="reading.html">附录一-开卷有益</a></li>
+			</ul>
+		</div>
+		
+		<div id="mask"></div>
+		
+		<script>
+				
+			    var pNum=6;
+			
+				$("#btn_menu").on('touchend',function(e){
+					e.preventDefault();
+					$("#mask").toggle();
+					$("#btn_menu").toggleClass('active');
+					$("#slide_list").toggleClass("show");
+					$("body").toggleClass("cancel-scroll");
+					
+				});
+				
+				$("#btn_back,#back_start").on('touchend',function(){
+					
+				});
+				
+				$("#next_section").on('touchend',function(){
+					$("#main_text").turn("next");
+				})
+				
+				var t=setInterval("timer('t')",1000);
+				
+				$("#mask").on('touchmove',function(e){
+					e.preventDefault();
+					e.stopPropagation();
+				});
+				
+				var wheight=$(window).height();
+			    h=wheight-wheight*0.12;
+				$("body").css('height',h);
+				
+			
+			
+			function loadApp() {
+
+				// Create the flipbook
+				var w=$("#main_text").width();
+			    var th=$("#main_text").height();
+				console.log(w+','+th);
+				
+				$('#main_text').turn({
+						// Width
+
+						width:w,
+
+						// Height
+
+						height:th,
+
+						// Elevation
+
+						elevation: 50,
+
+						// Enable gradients
+
+						gradients: true,
+						// Auto center this flipbook
+						autoCenter: false,
+						//
+						display: 'single',
+
+				});
+			}
+			
+			loadApp();
+		
+		</script>
+		
+    </body>
+</html>
