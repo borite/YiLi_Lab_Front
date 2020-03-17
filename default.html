@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>伊利图书馆</title>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<link rel="stylesheet" href="css/swiper.min.css"/>
+		<link rel="stylesheet" href="css/lab.css" />
+		<script>
+			$(function(){
+				var mySwiper = new Swiper ('.swiper-container', {
+					direction: 'horizontal', // 垂直切换选项
+					loop: false, // 循环模式选项
+					
+					// 如果需要分页器
+					pagination: {
+					  el: '.swiper-pagination',
+					  bulletActiveClass:'my-bullet-active'
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<header id="search_bar">
+				<input id="ipt_search" placeholder="搜索图书" type="text" />
+				<input id="btn_search" type="image" src="images/btn_search.png" />
+			</header>
+			
+			<div id="swiper_area" class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+					   <img src="images/top1.png"/>
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			
+			<section id="book-shelf">
+				<h4 class="section-tit">新书上架</h4>
+				<div id="shelf">
+					<a href="startread.html">
+						<img src="images/book1.png" />
+					</a>
+				</div>
+			</section>
+			
+		</div>
+	</body>
+</html>

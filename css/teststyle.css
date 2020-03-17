@@ -1,0 +1,101 @@
+font-size: calc(100vw/75);/* CSS Document */
+
+*{
+	margin: 0; padding: 0;
+}
+
+
+/*@media screen and (width: 300px) {
+	html{
+		font-size: 3px;
+	}
+}*/
+
+html{
+	font-size: calc(100vw/75);
+}
+
+body{
+	padding: 3rem 4rem;
+}
+
+
+#search_bar {
+	width: 100%;
+	height: 6rem;
+	border: 1px solid #ccc;
+	border-radius: 3rem;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 4rem;
+}
+#search_bar #ipt_search{
+	display: block;
+	height: 4rem;
+	font-size: 2.8rem;
+	border:none;
+	outline: none;
+}
+
+#btn_search {
+	width: 6rem;
+	outline: none;
+	display: block;
+}
+
+#swiper_area{
+	margin-top: 4rem;
+}
+
+.swiper-container{
+	height: 50rem;
+}
+
+.swiper-slide img{
+	border-radius: 1rem;
+	display: block;
+	width: 100%;
+}
+
+.my-bullet-active{
+	width: 3rem;
+	border-radius: 5px;
+	background: #ff6600;
+	opacity: 1;
+	transition: width 0.45s;
+}
+
+#book-shelf{
+	margin-top: 4rem;
+}
+
+.section-tit {
+	font-size: 4rem;
+	font-weight: normal;
+}
+
+#shelf {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-top: 3rem;
+}
+
+
+#shelf > a{
+	display: block;
+	text-decoration: none;
+	overflow: hidden;
+	border-radius: 1rem;
+	width: 21rem;
+	margin-bottom: 2rem;
+}
+
+#shelf > a >img{
+	display: block;
+	width: 100%;
+}
+
+

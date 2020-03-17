@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>伊利图书馆</title>
+		<link rel="stylesheet" href="css/lab.css?v=1" />
+	</head>
+
+	<body style="padding-bottom: 5rem;">
+		
+		<button id="back_default">
+			<i class="icon-back"></i>
+			<div style="color: #707070;">返回</div>
+		</button>
+		
+		<header id="bookinfo">
+			<img id="book_poster" src="images/book1.png"/>
+			<div id="book_info">
+				<h3 id="book_name">至不平凡的你</h3>
+				<div class="row">
+					<label class="font-1">作者：</label>
+					<span class="font-1">伊利</span>
+				</div>
+				<div class="row">
+					<label class="font-1">分类：</label>
+					<span class="font-1">管理</span>
+				</div>
+				<div class="row">
+					<label class="font-1">阅读量：</label>
+					<span class="font-1 color-bule">1.5w</span>
+				</div>
+			</div>
+		</header>
+		
+		<!--内容简介-->
+		<section id="book_abstract">
+		    <h5>内容简介：</h5>
+			<div class="content-text">
+				生命的美好，在于总有期待，努力才会有惊喜。态度决定一切，选择乐观，才有向上的人生。你的明天你做主，明天的你会感谢今天努力拼搏的自己！
+			</div>
+		</section>
+		
+		<!--章节目录-->
+		<section id="menu">
+			<h4>章节目录</h4>
+			<ul id="menu_list">
+				<li><a href="reading.html">卷首语</a></li>
+				<li><a href="reading.html">素养元素-积极进取</a></li>
+				<li><a href="reading.html">素养元素-敏思笃行</a></li>
+				<li><a href="reading.html">素养元素-诚信正直</a></li>
+				<li><a href="reading.html">素养元素-谦逊务实</a></li>
+				<li><a href="reading.html">素养元素-热情友善</a></li>
+				<li><a href="reading.html">素养元素-有礼有节</a></li>
+				<li><a href="reading.html">素养元素-思恩敬畏</a></li>
+				<li><a href="reading.html">素养元素-行善利他</a></li>
+				<li><a href="reading.html">附录一-开卷有益</a></li>
+			</ul>
+		</section>
+		
+		
+		<!--底部用户信息-->
+		<footer id="user_info">
+			<div id="infos">
+				<img id="user_head" src="images/head.png"/>
+				<div id="info_area">
+					<div>冷饮部：测试一下姓名</div>
+					<div>阅读总时长：1440小时</div>
+				</div>
+			</div>
+			<a class="btn_continue">
+				<div>继续阅读</div>
+				<div>《致不平凡的你》</div>
+			</a>
+		</footer>
+		
+		
+		<script>
+			var btn=document.getElementById("back_default");
+			btn.addEventListener('touchend',function(e){
+				e.preventDefault();
+				location.replace("default.html");
+			})
+		
+		
+		</script>
+	</body>
+</html>

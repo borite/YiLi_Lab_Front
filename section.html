@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>致不甘平凡的你</title>
+		<link rel="stylesheet" href="css/lab.css" />
+		<link rel="stylesheet" href="css/iconfont.css"/>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/common.js"></script>
+		<script>
+			
+			$(function(){
+				
+				$("#btn_menu").on('touchend',function(e){
+					e.preventDefault();
+					$("#mask").toggle();
+					$("#btn_menu").toggleClass('active');
+					$("#slide_list").toggleClass("show");
+					$("body").toggleClass("cancel-scroll");
+				});
+				
+				$("#btn_back,#back_start").on('touchend',function(){
+					location.replace('startread.html');
+				});
+				
+				var t=setInterval("timer('t')",1000);
+				
+				$("#mask").on('touchmove',function(e){
+					e.preventDefault();
+					e.stopPropagation();
+				})
+				
+			})
+			
+		</script>
+	</head>
+
+	<body class="bg-read">
+		<header id="read_header">
+		  <input id="btn_back" type="image" src="images/arraw.png" width="30" style="margin-left: -0.35rem;" />
+		  <span class="title">素养元素-积极进取</span> 
+		</header>
+		<section id="main_text">
+			  <div class="sub-title">【素养描述】</div>
+			  <div class="content"> 
+				生命的美好，<br>
+				在于总有期待，<br>
+				努力才会有惊喜。<br>
+				态度决定一切，<br>
+				选择乐观，<br>
+				才有向上的人生。<br>
+				你的明天你做主，<br>
+				明天的你会感谢今天努力拼搏的自己！<br>
+			  </div>
+			  <div class="sub-title">【古往今来】</div>
+			  <div class="content"> 
+				  <h4>篮坛新秀林书豪——努力是向上的车轮</h4>
+				  <p>
+				  	 林书豪是美籍华人，祖籍福建省漳浦县，祖辈移居台湾彰化，他的父母都是中国台湾人。林书豪出生在美国加州，身高191公分，体重91公斤，是哈佛大学毕业的高材生，主修经济学、辅修社会学。
+				  </p>
+				  <p>
+				 	 林书豪在哈佛求学期间，曾担任校篮球队的队长，司职控球后卫，很多人认为林书豪并不适合打篮球，但林书豪并不受别人的影响，依然坚持训练和参加各类比赛。毕业后，林书豪在申请加入NBA的过程中，曾四度被下放到作为NBA备用人才库的NBDL（NBA的次级联赛,即美国发展联盟），但他始终坚持对篮球的热爱，并用旁人看不到的努力训练来创造入选球队的机会。
+				  </p>
+				  <p>
+				 	 经历了一段时间后，林书豪分别与金州勇士队和休斯敦火箭队进行过签约，却只能担任替补上场，尽管林书豪始终是球队训练最刻苦的球员之一，但仍然先后被这两支球队裁掉。对于林书豪来说，任何成长中的磨砺都是让自己更努力的理由。林书豪最后与纽约尼克斯队签下了无保障合同，平时的刻苦训练没有白费，在一次尼克斯球队两大主力球员缺阵的情况下，林书豪临危受命作为首发球员上场，职业生涯头五场首发共得136分的高分，并迅速成名，获得了最佳球员等荣誉。
+				  </p>
+				  <p>
+				  	 在成为职业篮球运动员的路上，林书豪始终坚持自己的篮球梦想，用努力和汗水赢得了在篮坛的一次次掌声，并开启了自己的职业篮球高手之旅。
+				  </p>
+			  </div>
+			
+			  <div id="btn_area">
+			  	<button id="back_start" class="btn-common">返回</button>
+				<button id="next_section" class="btn-common">下一章</button>
+			  </div>
+		  </section>
+			
+
+		<!--底部用户信息-->
+		<footer id="user_info">
+		  <button id="btn_menu"> 
+			<i class="iconfont icon-mulu"></i>
+		  	<div class="menu-txt">目录</div>
+		  </button>
+		  <div id="infos"> <img id="user_head" src="images/head.png"/>
+			<div id="info_area">
+			  <div>冷饮部：员工姓名</div>
+			  <div>正在阅读：<span id="t">00:00</span></div>
+			</div>
+		  </div>
+		</footer>
+
+		
+		<!--弹出目录-->
+		<div id="slide_list">
+			<header>至不平凡的你</header>
+			<ul id="read_mlist">
+			  <li><a href="reading.html" class="mlist-active">卷首语</a></li>
+			  <li><a href="reading.html">素养元素-积极进取</a></li>
+			  <li><a href="reading.html">素养元素-敏思笃行</a></li>
+			  <li><a href="reading.html">素养元素-诚信正直</a></li>
+			  <li><a href="reading.html">素养元素-谦逊务实</a></li>
+			  <li><a href="reading.html">素养元素-热情友善</a></li>
+			  <li><a href="reading.html">素养元素-有礼有节</a></li>
+			  <li><a href="reading.html">素养元素-思恩敬畏</a></li>
+			  <li><a href="reading.html">素养元素-行善利他</a></li>
+			  <li><a href="reading.html">附录一-开卷有益</a></li>
+			</ul>
+		</div>
+		
+		<div id="mask"></div>
+		
+    </body>
+</html>

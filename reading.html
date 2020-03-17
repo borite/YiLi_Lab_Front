@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>致不甘平凡的你</title>
+		<link rel="stylesheet" href="css/lab.css" />
+		<link rel="stylesheet" href="css/iconfont.css"/>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/common.js"></script>
+		<script>
+			
+			$(function(){
+				
+				$("#btn_menu").on('touchend',function(e){
+					e.preventDefault();
+					$("#mask").toggle();
+					$("#btn_menu").toggleClass('active');
+					$("#slide_list").toggleClass("show");
+					$("body").toggleClass("cancel-scroll");
+					
+				});
+				
+				$("#btn_back,#back_start").on('touchend',function(){
+					location.replace('startread.html');
+				});
+				
+				$("#next_section").on('touchend',function(){
+					location.replace('section.html');
+				})
+				
+				var t=setInterval("timer('t')",1000);
+				
+				$("#mask").on('touchmove',function(e){
+					e.preventDefault();
+					e.stopPropagation();
+				})
+				
+			})
+			
+		</script>
+	</head>
+
+	<body class="bg-read">
+		<header id="read_header">
+		  <input id="btn_back" type="image" src="images/arraw.png" width="30" style="margin-left: -0.35rem;" />
+		  <span class="title">卷首语</span> 
+		</header>
+		<section id="main_text">
+			  <div class="sub-title">【致不甘平凡的你】</div>
+			  <div class="content"> 每个人的内心都渴望不平凡！<br>
+				你是谁？<br>
+				你想成为谁？<br>
+				你能成为谁？<br>
+				这个世界从来没有所谓的安逸，<br>
+				你不努力，谁也给不了你想要的生活。<br>
+				想要在未来遇到那个更好的自己，<br>
+				必须去拼、去闯，在暴风雨中迎着太阳奔跑。<br>
+				人生太短，纵使我们来不及认真地年轻，<br>
+				但一定要选择认真地活在当下。<br>
+				拥有高尚纯粹的灵魂，<br>
+				做一个低调而务实的行者，<br>
+				心有理想、春暖花开。<br>
+				人生很美，只要相信有美好的事情发生，<br>
+				就能实现所有美好的愿望。<br>
+				善待生命中的擦肩而过，<br>
+				把握眼前的机遇，<br>
+				正心诚意、一往无前。<br>
+				但通往梦想的道路总是崎岖不平的，<br>
+				唯有一颗不变的初心、一腔不懈的激情，<br>
+				才能在风雨过后见彩虹，<br>
+				在成长中不断开启一段又一段值得珍藏的美好。<br>
+				伊利的不平凡，需要不平凡的你；<br>
+				世界的美好，需要更美好的你。<br>
+				这是一本有关成长的手册，<br>
+				写给脚下有路、心中有梦的你。<br>
+			  </div>
+			  <div id="btn_area">
+			  	<button id="back_start" class="btn-common">返回</button>
+				<button id="next_section" class="btn-common">下一章</button>
+			  </div>
+		  </section>
+			
+
+		<!--底部用户信息-->
+		<footer id="user_info">
+		  <button id="btn_menu"> 
+			<i class="iconfont icon-mulu"></i>
+		  	<div class="menu-txt">目录</div>
+		  </button>
+		  <div id="infos"> <img id="user_head" src="images/head.png"/>
+			<div id="info_area">
+			  <div>冷饮部：员工姓名</div>
+			  <div>正在阅读：<span id="t">00:00</span></div>
+			</div>
+		  </div>
+		</footer>
+
+		
+		<!--弹出目录-->
+		<div id="slide_list">
+			<header>至不平凡的你</header>
+			<ul id="read_mlist">
+			  <li><a href="reading.html" class="mlist-active">卷首语</a></li>
+			  <li><a href="reading.html">素养元素-积极进取</a></li>
+			  <li><a href="reading.html">素养元素-敏思笃行</a></li>
+			  <li><a href="reading.html">素养元素-诚信正直</a></li>
+			  <li><a href="reading.html">素养元素-谦逊务实</a></li>
+			  <li><a href="reading.html">素养元素-热情友善</a></li>
+			  <li><a href="reading.html">素养元素-有礼有节</a></li>
+			  <li><a href="reading.html">素养元素-思恩敬畏</a></li>
+			  <li><a href="reading.html">素养元素-行善利他</a></li>
+			  <li><a href="reading.html">附录一-开卷有益</a></li>
+			</ul>
+		</div>
+		
+		<div id="mask"></div>
+		
+    </body>
+</html>
