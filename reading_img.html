@@ -28,7 +28,7 @@
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page8.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page9.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page10.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page11.png)"></div>
+			<!--<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page11.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page12.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page13.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page14.png)"></div>
@@ -37,10 +37,11 @@
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page17.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page18.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page19.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page20.png)"></div>
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page20.png)"></div>-->
 		</section>
 		<div id="btn_area">
-			<button id="back_start" class="btn-common">返回</button>
+			<button id="prev_section" disabled class="btn-common" style="visibility: hidden;">上一页</button>
+			<button id="back_start" class="btn-common">返回目录</button>
 			<button id="next_section" class="btn-common">下一页</button>
 		</div>
 
@@ -63,40 +64,40 @@
 		<div id="slide_list">
 			<header>至不平凡的你</header>
 			<ul id="read_mlist">
-			  <li><a href="reading.html" class="mlist-active">卷首语</a></li>
-			  <li><a href="reading.html">素养元素-积极进取</a></li>
-			  <li><a href="reading.html">素养元素-敏思笃行</a></li>
-			  <li><a href="reading.html">素养元素-诚信正直</a></li>
-			  <li><a href="reading.html">素养元素-谦逊务实</a></li>
-			  <li><a href="reading.html">素养元素-热情友善</a></li>
-			  <li><a href="reading.html">素养元素-有礼有节</a></li>
-			  <li><a href="reading.html">素养元素-思恩敬畏</a></li>
-			  <li><a href="reading.html">素养元素-行善利他</a></li>
-			  <li><a href="reading.html">附录一-开卷有益</a></li>
+			  <li><a href="reading_img.html" class="mlist-active">卷首语</a></li>
+			  <li><a href="#">素养元素-积极进取</a></li>
+			  <li><a href="#">素养元素-敏思笃行</a></li>
+			  <li><a href="#">素养元素-诚信正直</a></li>
+			  <li><a href="#">素养元素-谦逊务实</a></li>
+			  <li><a href="#">素养元素-热情友善</a></li>
+			  <li><a href="#">素养元素-有礼有节</a></li>
+			  <li><a href="#">素养元素-思恩敬畏</a></li>
+			  <li><a href="#">素养元素-行善利他</a></li>
+			  <li><a href="#">附录一-开卷有益</a></li>
 			</ul>
 		</div>
 		
 		<div id="mask"></div>
 		
-		<script>
-				
-			    var pNum=6;
-			
+		<script>		    
 				$("#btn_menu").on('touchend',function(e){
 					e.preventDefault();
 					$("#mask").toggle();
 					$("#btn_menu").toggleClass('active');
 					$("#slide_list").toggleClass("show");
 					$("body").toggleClass("cancel-scroll");
-					
 				});
 				
 				$("#btn_back,#back_start").on('touchend',function(){
-					
+					location.replace("startread.html");
 				});
 				
 				$("#next_section").on('touchend',function(){
 					$("#main_text").turn("next");
+				})
+			
+				$("#prev_section").on('touchend',function(){
+					$("#main_text").turn("previous");
 				})
 				
 				var t=setInterval("timer('t')",1000);
@@ -109,8 +110,6 @@
 				var wheight=$(window).height();
 			    h=wheight-wheight*0.12;
 				$("body").css('height',h);
-				
-			
 			
 			function loadApp() {
 
@@ -121,24 +120,37 @@
 				
 				$('#main_text').turn({
 						// Width
-
 						width:w,
-
 						// Height
-
 						height:th,
-
 						// Elevation
-
 						elevation: 50,
-
 						// Enable gradients
-
 						gradients: true,
 						// Auto center this flipbook
 						autoCenter: false,
 						//
 						display: 'single',
+						when: {
+							first: function(event, page, pageObject) {
+								// Implementation
+								$("#prev_section").prop('disabled',true).css('visibility','hidden');
+							},
+							last:function(event, page, pageObject) {
+								// Implementation
+								$("#next_section").prop('disabled',true).css('visibility','hidden');
+							},
+
+							turning:function(event, page, pageObject){
+								if(page>1){
+									$("#prev_section").css('visibility','visible').prop('disabled',false);
+								}
+								var total=$("#main_text").turn("pages");
+								if(page<total){
+									$("#next_section").prop('disabled',false).css('visibility','visible');
+								}
+							}
+						}
 
 				});
 			}
