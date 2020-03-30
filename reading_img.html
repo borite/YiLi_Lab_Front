@@ -12,13 +12,13 @@
 		<script src="js/common.js"></script>
 	</head>
 
-	<body>
+	<body style="overflow: hidden;">
 		<header id="read_header">
 		  <input id="btn_back" type="image" src="images/arraw.png" width="30" style="margin-left: -0.35rem;" />
 		</header>
 		
 		<section id="main_text">
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page1.png)"></div>
+			<!--<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page1.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page2.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page3.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page4.png)"></div>
@@ -37,10 +37,11 @@
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page17.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page18.png)"></div>
 			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page19.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page20.png)"></div>
+			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page20.png)"></div>-->
 		</section>
 		<div id="btn_area">
-			<button id="back_start" class="btn-common">返回</button>
+			<button id="prev_section" disabled class="btn-common" style="visibility: hidden;">上一页</button>
+			<button id="back_start" class="btn-common">返回目录</button>
 			<button id="next_section" class="btn-common">下一页</button>
 		</div>
 
@@ -63,87 +64,146 @@
 		<div id="slide_list">
 			<header>至不平凡的你</header>
 			<ul id="read_mlist">
-			  <li><a href="reading.html" class="mlist-active">卷首语</a></li>
-			  <li><a href="reading.html">素养元素-积极进取</a></li>
-			  <li><a href="reading.html">素养元素-敏思笃行</a></li>
-			  <li><a href="reading.html">素养元素-诚信正直</a></li>
-			  <li><a href="reading.html">素养元素-谦逊务实</a></li>
-			  <li><a href="reading.html">素养元素-热情友善</a></li>
-			  <li><a href="reading.html">素养元素-有礼有节</a></li>
-			  <li><a href="reading.html">素养元素-思恩敬畏</a></li>
-			  <li><a href="reading.html">素养元素-行善利他</a></li>
-			  <li><a href="reading.html">附录一-开卷有益</a></li>
+			  <li><a href="reading_img.html" class="mlist-active">卷首语</a></li>
+			  <li><a href="#">素养元素-积极进取</a></li>
+			  <li><a href="#">素养元素-敏思笃行</a></li>
+			  <li><a href="#">素养元素-诚信正直</a></li>
+			  <li><a href="#">素养元素-谦逊务实</a></li>
+			  <li><a href="#">素养元素-热情友善</a></li>
+			  <li><a href="#">素养元素-有礼有节</a></li>
+			  <li><a href="#">素养元素-思恩敬畏</a></li>
+			  <li><a href="#">素养元素-行善利他</a></li>
+			  <li><a href="#">附录一-开卷有益</a></li>
 			</ul>
 		</div>
 		
 		<div id="mask"></div>
-		
-		<script>
-				
-			    var pNum=6;
-			
-				$("#btn_menu").on('touchend',function(e){
+
+		<script>		    
+			$("#btn_menu").on('touchend',function(e){
 					e.preventDefault();
 					$("#mask").toggle();
 					$("#btn_menu").toggleClass('active');
 					$("#slide_list").toggleClass("show");
 					$("body").toggleClass("cancel-scroll");
-					
-				});
+			});
 				
-				$("#btn_back,#back_start").on('touchend',function(){
-					
-				});
+			$("#btn_back,#back_start").on('touchend',function(){
+					location.replace("startread.html");
+			});
 				
-				$("#next_section").on('touchend',function(){
+			$("#next_section").on('touchend',function(){
 					$("#main_text").turn("next");
-				})
+			})
+			
+			$("#prev_section").on('touchend',function(){
+					$("#main_text").turn("previous");
+			})
 				
-				var t=setInterval("timer('t')",1000);
+			var t=setInterval("timer('t')",1000);
 				
-				$("#mask").on('touchmove',function(e){
+			$("#mask").on('touchmove',function(e){
 					e.preventDefault();
 					e.stopPropagation();
+			});
+				
+			var wheight=$(window).height();
+			h=wheight-wheight*0.12;
+			$("body").css('height',h);
+			
+			
+			//判断屏幕高度，并载入所有图书页
+			var pages=155;
+			let wHeight=window.innerHeight;		
+			let src='books/zbgpfdn/mobile/Page';
+			let pics=[]
+			if(wHeight>700){
+				src='books/zbgpfdn/mobile/800/Page';
+				pages=154;
+			}
+			for(let i=1;i<=pages;i++){
+			   let picSrc=src+i+'.png';
+			   pics.push(picSrc);
+			}
+			
+			$("body").append('<div id="loading">正在加载图书...<br/><span>0/'+pages+'</span></div>');
+			
+			function loadImgs(srcArr,i){
+				$("#mask").css({
+					'display':'block',
+					'z-index':'28000'
 				});
-				
-				var wheight=$(window).height();
-			    h=wheight-wheight*0.12;
-				$("body").css('height',h);
-				
+
+				if(i<srcArr.length){
+					var img=new Image();
+					img.src=pics[i];
+					img.onload=function(){
+						$("#loading > span").text(i+'/'+pages);
+						console.log(img.src);
+						$("#main_text").append('<div class="book-img-page" style="background-image: url('+img.src+')"></div>');
+						loadImgs(srcArr,i+1);
+					}
+				}else{
+					$("#mask").css({
+						'display':'none',
+						'z-index':'10000'
+					});
+					$("#loading").remove();
+					loadApp();
+				}
+			}
 			
-			
+			loadImgs(pics,0);
+
 			function loadApp() {
+				
 
 				// Create the flipbook
 				var w=$("#main_text").width();
 			    var th=$("#main_text").height();
 				console.log(w+','+th);
-				
+			
 				$('#main_text').turn({
 						// Width
-
 						width:w,
-
 						// Height
-
 						height:th,
-
 						// Elevation
-
 						elevation: 50,
-
 						// Enable gradients
-
 						gradients: true,
 						// Auto center this flipbook
 						autoCenter: false,
 						//
 						display: 'single',
+						when: {
+							first: function(event, page, pageObject) {
+								// Implementation
+								$("#prev_section").prop('disabled',true).css('visibility','hidden');
+							},
+							last:function(event, page, pageObject) {
+								// Implementation
+								$("#next_section").prop('disabled',true).css('visibility','hidden');
+							},
+
+							turning:function(event, page, pageObject){
+								if(page>1){
+									$("#prev_section").css('visibility','visible').prop('disabled',false);
+								}
+								//总页数
+								var total=$("#main_text").turn("pages");
+								if(page<total){
+									$("#next_section").prop('disabled',false).css('visibility','visible');
+								}
+							}
+						}
 
 				});
 			}
 			
-			loadApp();
+			//loadApp();
+			
+			
 		
 		</script>
 		
