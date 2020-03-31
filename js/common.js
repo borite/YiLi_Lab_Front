@@ -27,19 +27,16 @@ function timer(tid) {
 	if (int_day < 10) {                   
 		int_day = "0" + int_day;                
 	}
-
-	                
+              
 	if (int_hour < 10) {                    
 		int_hour = "0" + int_hour;	                
 	}
-
-	                
+              
 	if (int_minute < 10) {                    
 		int_minute = "0" + int_minute;
 
 		                
 	}
-
 	                
 	if (int_second < 10) {                    
 		int_second = "0" + int_second;	                
@@ -50,42 +47,34 @@ function timer(tid) {
 	}else{
 		$("#"+tid).text(int_hour+":"+int_minute+":"+int_second);
 	}
-	
-
-	/*var s="";
-	var m="";
-	var h="";
-	second++;
-	if(second<=9){
-		s="0"+second;
-	}else{
-		s=second;
-	}
-	if(second==59){
-		second=0;
-		min+=1;
-		
-	}
-	
-	if(min<10){
-		m="0"+min;
-	}
-	
-	if(min==60){
-		hour+=1;
-		min==0;
-	}
-	
-	if(hour<10){
-		h="0"+hour;
-	}
-	
-	//返回时间
-	
-	if(hour==0){
-		$("#"+tid).text(m+":"+s);
-	}else{
-		$("#"+tid).text(h+":"+m+":"+s);
-	}*/
-	      
+      
 }
+
+
+//获取URL中指定的参数值
+function GetQueryString(name) { 
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+	var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+	var context = ""; 
+	if (r != null) 
+		context = r[2]; 
+	reg = null; 
+	r = null; 
+	return context == null || context == "" || context == "undefined" ? "" : context; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

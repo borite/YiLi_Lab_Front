@@ -18,26 +18,7 @@
 		</header>
 		
 		<section id="main_text">
-			<!--<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page1.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page2.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page3.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page4.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page5.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page6.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page7.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page8.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page9.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page10.png)"></div>
-			<!--<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page11.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page12.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page13.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page14.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page15.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page16.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page17.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page18.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page19.png)"></div>
-			<div class="book-img-page" style="background-image: url(books/zbgpfdn/mobile/Page20.png)"></div>-->
+
 		</section>
 		<div id="btn_area">
 			<button id="prev_section" disabled class="btn-common" style="visibility: hidden;">上一页</button>
@@ -51,11 +32,13 @@
 			<i class="iconfont icon-mulu"></i>
 		  	<div class="menu-txt">目录</div>
 		  </button>
-		  <div id="infos"> <img id="user_head" src="images/head.png"/>
-			<div id="info_area">
-			  <div>冷饮部：员工姓名</div>
-			  <div>正在阅读：<span id="t">00:00</span></div>
-			</div>
+		  <div id="infos"> 
+			  <div style="font-size: 12px;">正在阅读：致不甘平凡的你</div>
+<!--			 <img id="user_head" src="images/head.png"/>
+			 <div id="info_area">
+				 <div>冷饮部：员工姓名</div>
+				 <div>正在阅读：<span id="t">00:00</span></div>
+			 </div>-->
 		  </div>
 		</footer>
 
@@ -65,21 +48,25 @@
 			<header>至不平凡的你</header>
 			<ul id="read_mlist">
 			  <li><a href="reading_img.html" class="mlist-active">卷首语</a></li>
-			  <li><a href="#">素养元素-积极进取</a></li>
-			  <li><a href="#">素养元素-敏思笃行</a></li>
-			  <li><a href="#">素养元素-诚信正直</a></li>
-			  <li><a href="#">素养元素-谦逊务实</a></li>
-			  <li><a href="#">素养元素-热情友善</a></li>
-			  <li><a href="#">素养元素-有礼有节</a></li>
-			  <li><a href="#">素养元素-思恩敬畏</a></li>
-			  <li><a href="#">素养元素-行善利他</a></li>
-			  <li><a href="#">附录一-开卷有益</a></li>
+			  <li><a id="p6" data-p="6">素养元素-积极进取</a></li>
+			  <li><a id="p13" data-p="13">素养元素-敏思笃行</a></li>
+			  <li><a id="p23" data-p="23">素养元素-诚信正直</a></li>
+			  <li><a id="p32" data-p="32">素养元素-谦逊务实</a></li>
+			  <li><a id="p42" data-p="42">素养元素-热情友善</a></li>
+			  <li><a id="p50" data-p="50">素养元素-有礼有节</a></li>
+			  <li><a id="p57" data-p="57">素养元素-思恩敬畏</a></li>
+			  <li><a id="p68" data-p="68">素养元素-行善利他</a></li>
+			  <li><a id="p76" data-p="76">附录一-开卷有益</a></li>
 			</ul>
 		</div>
 		
 		<div id="mask"></div>
 
-		<script>		    
+		<script>		
+			
+			var pageNum=GetQueryString('p');
+			console.log(pageNum);
+			
 			$("#btn_menu").on('touchend',function(e){
 					e.preventDefault();
 					$("#mask").toggle();
@@ -119,7 +106,7 @@
 			let pics=[]
 			if(wHeight>700){
 				src='books/zbgpfdn/mobile/800/Page';
-				pages=154;
+				pages=124;
 			}
 			for(let i=1;i<=pages;i++){
 			   let picSrc=src+i+'.png';
@@ -150,14 +137,28 @@
 					});
 					$("#loading").remove();
 					loadApp();
+					if(pageNum!=""){
+						$("#main_text").turn("page", pageNum);
+						$('#read_mlist a').removeClass('mlist-active');
+						$('#p'+pageNum).addClass('mlist-active');
+					}
+					
+					$("#read_mlist a").on('touchend',function(e){
+						e.preventDefault();
+						e.stopPropagation();
+						var selPage=$(this).data('p');
+						$("#main_text").turn("page", selPage);
+						$("#btn_menu").trigger('touchend');
+						$('#read_mlist a').removeClass('mlist-active');
+						$('#p'+selPage).addClass('mlist-active');
+					})
+					
 				}
 			}
 			
 			loadImgs(pics,0);
 
 			function loadApp() {
-				
-
 				// Create the flipbook
 				var w=$("#main_text").width();
 			    var th=$("#main_text").height();
@@ -201,7 +202,6 @@
 				});
 			}
 			
-			//loadApp();
 			
 			
 		
