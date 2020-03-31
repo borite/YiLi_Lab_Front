@@ -126,7 +126,6 @@
 					img.src=pics[i];
 					img.onload=function(){
 						$("#loading > span").text(i+'/'+pages);
-						console.log(img.src);
 						$("#main_text").append('<div class="book-img-page" style="background-image: url('+img.src+')"></div>');
 						loadImgs(srcArr,i+1);
 					}

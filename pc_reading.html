@@ -5,6 +5,19 @@
 		<title>致不甘平凡的你</title>
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<link rel="stylesheet" href="css/pc_reading.css">
+		<script src="js/turn.js"></script>
+		<script src="js/common.js"></script>
+		<script>
+			$(function(){
+				$("#open_menu").click(function(){
+					$("#mask").fadeIn(300,function(){
+						$("#mask").one('click',function(){
+							$(this).fadeOut();
+						})
+					});
+				})
+			})
+		</script>
 	</head>
 
 	<body>
@@ -16,20 +29,158 @@
 				<a class="top-book-name" href="pc_book_info.html">致不甘平凡的你</a>
 				<span class="section-name">卷首语</span>
 			</div>
-			<div class="link-menu">
-				<span style="font-size: 14px; padding-right: 5px;">目录</span>
-				<img src="images/menu.png" width="24" />
+			<div id="open_menu" class="link-menu">
+				<span style="font-size: 16px; padding-right: 5px;">目录</span>
+				<img src="images/menu.png" width="26" />
 			</div>
-			
 		</header>
 		
 		<section id="book_pages">
-			<div class="page"></div>
-		
-		
+			<div id="pc_pages">
+				
+			</div>
+			<div id="pre_page" class="btn-page" style="left: -50px;">上一页</div>
+			<div id="next_page" class="btn-page" style="right: -50px;">下一页</div>
 		</section>
 		
+
+		<div id="mask">
+			<div id="menu_wrap">
+			    <ul id="menu_list">
+				  <li><h4 style="font-size: 24px; color: #555555">目录</h4></li>
+				  <li><a id="p1" data-p="1"class="menu-active">卷首语</a></li>
+				  <li><a id="p6" data-p="6">素养元素-积极进取</a></li>
+				  <li><a id="p16" data-p="16">素养元素-敏思笃行</a></li>
+				  <li><a id="p26" data-p="26">素养元素-诚信正直</a></li>
+				  <li><a id="p36" data-p="36">素养元素-谦逊务实</a></li>
+				  <li><a id="p46" data-p="46">素养元素-热情友善</a></li>
+				  <li><a id="p56" data-p="56">素养元素-有礼有节</a></li>
+				  <li><a id="p66" data-p="66">素养元素-思恩敬畏</a></li>
+				  <li><a id="p76" data-p="76">素养元素-行善利他</a></li>
+				  <li><a id="p86" data-p="86">附录一-开卷有益</a></li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			
+			
+			//组织载入图片
+			let src='books/zbgpfdn/pc/031722104939_0yl_';
+			let pics=[]
+			let pages=121;
+			for(let i=1;i<=pages;i++){
+			   let picSrc=src+i+'.png';
+			   pics.push(picSrc);
+			}
+			
+			//加载图片页loading框
+			$("body").append('<div id="loading">正在加载图书...<br/><span>0/'+pages+'</span></div>');
+			
+			//url传入的页码参数
+			let pageNum=GetQueryString('p') || 1;
+			
+			function loadImgs(srcArr,i){
+				if(i==0){
+					$("#menu_wrap").css('display','none');
+					$("#mask").css({
+						'display':'block',
+						'z-index':'28000'
+					});
+				}
+				if(i<srcArr.length){
+					var img=new Image();
+					img.src=pics[i];
+					img.onload=function(){
+						$("#loading > span").text(i+'/'+pages);
+						$("#pc_pages").append('<div class="page" style="background-image: url('+img.src+')"></div>');
+						loadImgs(srcArr,i+1);
+					}
+				}else{
+					$("#mask").css({
+						'display':'none',
+						'z-index':'20000'
+					});
+					$("#menu_wrap").css('display','block');
+					$("#loading").remove();
+				    loadApp();
+					
+					//选择对应目录，添加样式
+					if(pageNum!=""){
+						$("#pc_pages").turn("page", pageNum);
+						$('#menu_list a').removeClass('menu-active');
+						$('#p'+pageNum).addClass('menu-active');
+						$("#top .section-name").text($('#p'+pageNum).text());
+					}
+					
+					$("#menu_wrap a").on('click',function(e){
+						e.preventDefault();
+						var selPage=$(this).data('p');
+						$("#pc_pages").turn("page", selPage);
+						$('#menu_wrap a').removeClass('menu-active');
+						$('#p'+selPage).addClass('menu-active');
+						$("#top .section-name").text($(this).text());
+					})
+					
+				}
+			}
+			
+			loadImgs(pics,0);
+			
+			function loadApp() {
+
+				// Create the flipbook
+				var w=$("#pc_pages").width();
+			    var th=$("#pc_pages").height();
+				//console.log(w+','+th);
+
+				$('#pc_pages').turn({
+						// Width
+						width:w,
+						// Height
+						height:th,
+						// Elevation
+						elevation: 50,
+						// Enable gradients
+						gradients: true,
+						// Auto center this flipbook
+						autoCenter: true,
+						turnCorners: "bl,br",
+						//
+						display: 'single',
+						when: {
+							first: function(event, page, pageObject) {
+								// Implementation
+								$("#pre_page").prop('disabled',true).css('visibility','hidden');
+							},
+							last:function(event, page, pageObject) {
+								// Implementation
+								$("#next_page").prop('disabled',true).css('visibility','hidden');
+							},
+
+							turning:function(event, page, pageObject){
+								if(page>1){
+									$("#pre_page").css('visibility','visible').prop('disabled',false);
+								}
+								//总页数
+								var total=$("#pc_pages").turn("pages");
+								if(page<total){
+									$("#next_page").prop('disabled',false).css('visibility','visible');
+								}
+							}
+						}
+
+				});
+				
+				$("#next_page").on('click',function(){
+					$("#pc_pages").turn("next");
+				})
+
+				$("#pre_page").on('click',function(){
+					$("#pc_pages").turn("previous");
+				})
+			}
+			
 		
-		
+		</script>
 	</body>
 </html>

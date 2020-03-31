@@ -9,6 +9,10 @@
 		<link rel="stylesheet" href="css/swiper.min.css"/>
 		<link rel="stylesheet" href="css/lab.css" />
 		<script>
+			if(IsPC()){
+				location.replace('pc_index.html');
+			}
+			
 			$(function(){
 				var mySwiper = new Swiper ('.swiper-container', {
 					direction: 'horizontal', // 垂直切换选项
@@ -21,6 +25,23 @@
 					}
 				});
 			})
+			
+			function IsPC() {
+				var userAgentInfo=navigator.userAgent;
+				var Agents = ["Android", "iPhone","SymbianOS", "Windows Phone","iPad", "iPod"];
+				var flag = true;
+				for (var v = 0; v < Agents.length; v++) {
+					if (userAgentInfo.indexOf(Agents[v]) > 0) {
+						flag = false;
+						break;
+					}
+				}
+				return flag;
+			}
+			
+
+			
+			
 		</script>
 	</head>
 
