@@ -11,13 +11,13 @@
 		
 		<button id="back_default">
 			<i class="icon-back"></i>
-			<div style="color: #707070;">返回</div>
+			<div style="color: #707070; font-size: 14px;">返回</div>
 		</button>
 		
 		<header id="bookinfo">
 			<img id="book_poster" src="images/book1.png"/>
 			<div id="book_info">
-				<h3 id="book_name">至不平凡的你</h3>
+				<h3 id="book_name">至不甘平凡的你</h3>
 				<div class="row">
 					<label class="font-1">作者：</label>
 					<span class="font-1">伊利</span>
@@ -28,7 +28,7 @@
 				</div>
 				<div class="row">
 					<label class="font-1">阅读量：</label>
-					<span class="font-1 color-bule">1.5w</span>
+					<span id="read_num" class="font-1 color-bule"></span>
 				</div>
 			</div>
 		</header>
@@ -69,14 +69,31 @@
 					<div>阅读总时长：1440小时</div>
 				</div>-->
 			</div>
-			<a class="btn_continue">
+			<a id="btn_goon" class="btn_continue" style="display: none;">
 				<div>继续阅读</div>
-				<div>《致不平凡的你》</div>
+				<div>《致不甘平凡的你》</div>
 			</a>
 		</footer>
 		
-		
+		<script src="js/jquery-3.3.1.min.js"></script>
 		<script>
+			$.get("https://customer.imotstudio.net/ylLibary/api/Front/GetBookList?BookID=8").done(function(res){
+					console.log(res);
+					if(res.Code==200){
+						$("#read_num").text(res.Data[0].ClickNum);
+					}
+			})
+			
+			var p=localStorage.getItem('p');
+			console.log(p);
+			if(p!=null || $.trim(p)!=''){
+				$("#btn_goon").css('display','flex').on('touchend',function(e){
+					e.preventDefault();
+					e.stopPropagation();
+					location.replace('reading_img.html?p='+p);
+				})
+			}
+			
 			var btn=document.getElementById("back_default");
 			btn.addEventListener('touchend',function(e){
 				e.preventDefault();

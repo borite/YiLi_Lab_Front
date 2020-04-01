@@ -5,6 +5,20 @@
 		<title>至不甘平凡的你-员工培训手册</title>
 		<link rel="stylesheet" href="css/pc.css">
 		<script src="js/jquery-3.3.1.min.js"></script>
+		<script>
+			
+			$(function(){
+				$.get("https://customer.imotstudio.net/ylLibary/api/Front/GetBookList?BookID=8").done(function(res){
+					console.log(res);
+					if(res.Code==200){
+						$("#book_infos .num").text(res.Data[0].ClickNum);
+					}
+				})
+			})
+			
+
+		
+		</script>
 	</head>
 
 	<body style="background-color: #f6f7f9; padding-bottom: 0;">
@@ -37,7 +51,7 @@
 							</div>
 							<div class="bottom-txt">阅读此书</div>
 						</div>
-						<a href="#" class="btn-start-read">开始阅读</a>
+						<a href="pc_reading.html?p=1" class="btn-start-read">开始阅读</a>
 					</div>
 					
 				</div>	

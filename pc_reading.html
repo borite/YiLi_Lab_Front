@@ -15,7 +15,13 @@
 							$(this).fadeOut();
 						})
 					});
-				})
+				});
+				$.ajax("https://customer.imotstudio.net/ylLibary/api/Front/BookClick?BookID=8",{
+					method:'put'
+				}).done(function(res){
+					console.log(res);
+				});
+				
 			})
 		</script>
 	</head>
@@ -74,7 +80,7 @@
 			}
 			
 			//加载图片页loading框
-			$("body").append('<div id="loading">正在加载图书...<br/><span>0/'+pages+'</span></div>');
+			$("body").append('<div id="loading">正在加载图书...<br/></div>');
 			
 			//url传入的页码参数
 			let pageNum=GetQueryString('p') || 1;
@@ -91,7 +97,7 @@
 					var img=new Image();
 					img.src=pics[i];
 					img.onload=function(){
-						$("#loading > span").text(i+'/'+pages);
+						//$("#loading > span").text(i+'/'+pages);
 						$("#pc_pages").append('<div class="page" style="background-image: url('+img.src+')"></div>');
 						loadImgs(srcArr,i+1);
 					}
@@ -163,6 +169,13 @@
 								}
 								//总页数
 								var total=$("#pc_pages").turn("pages");
+								
+								if($("#p"+page).length>0){
+									$("#top .section-name").text($("#p"+page).text());
+								}
+								
+								
+								
 								if(page<total){
 									$("#next_page").prop('disabled',false).css('visibility','visible');
 								}

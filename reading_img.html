@@ -64,6 +64,13 @@
 
 		<script>		
 			
+			$.ajax("https://customer.imotstudio.net/ylLibary/api/Front/BookClick?BookID=8",{
+				method:'put'
+			}).done(function(res){
+				console.log(res);
+			});
+			
+			
 			var pageNum=GetQueryString('p');
 			console.log(pageNum);
 			
@@ -113,7 +120,7 @@
 			   pics.push(picSrc);
 			}
 			
-			$("body").append('<div id="loading">正在加载图书...<br/><span>0/'+pages+'</span></div>');
+			$("body").append('<div id="loading">正在加载图书...</div>');
 			
 			function loadImgs(srcArr,i){
 				$("#mask").css({
@@ -125,7 +132,7 @@
 					var img=new Image();
 					img.src=pics[i];
 					img.onload=function(){
-						$("#loading > span").text(i+'/'+pages);
+						//$("#loading > span").text(i+'/'+pages);
 						$("#main_text").append('<div class="book-img-page" style="background-image: url('+img.src+')"></div>');
 						loadImgs(srcArr,i+1);
 					}
@@ -195,6 +202,7 @@
 								if(page<total){
 									$("#next_section").prop('disabled',false).css('visibility','visible');
 								}
+								localStorage.setItem('p',page);
 							}
 						}
 
