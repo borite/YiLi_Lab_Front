@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>致不甘平凡的你</title>
 		<script src="js/jquery-3.3.1.min.js"></script>
-		<link rel="stylesheet" href="css/pc_reading.css">
+		<link rel="stylesheet" href="css/pc_reading.css?v=1">
 		<script src="js/turn.js"></script>
 		<script src="js/common.js"></script>
 		<script>
@@ -32,7 +32,7 @@
 				<img src="images/book.png" />
 			</a>
 			<div class="reader-top-bar">
-				<a class="top-book-name" href="pc_book_info.html">致不甘平凡的你</a>
+				<a class="top-book-name" href="pc_book_info.html">返回目录</a>
 				<span class="section-name">卷首语</span>
 			</div>
 			<div id="open_menu" class="link-menu">
@@ -54,17 +54,34 @@
 			<div id="menu_wrap">
 			    <ul id="menu_list">
 				  <li><h4 style="font-size: 24px; color: #555555">目录</h4></li>
-				  <li><a id="p1" data-p="1"class="menu-active">卷首语</a></li>
-				  <li><a id="p6" data-p="6">素养元素-积极进取</a></li>
-				  <li><a id="p16" data-p="16">素养元素-敏思笃行</a></li>
-				  <li><a id="p26" data-p="26">素养元素-诚信正直</a></li>
-				  <li><a id="p36" data-p="36">素养元素-谦逊务实</a></li>
-				  <li><a id="p46" data-p="46">素养元素-热情友善</a></li>
-				  <li><a id="p56" data-p="56">素养元素-有礼有节</a></li>
-				  <li><a id="p66" data-p="66">素养元素-思恩敬畏</a></li>
-				  <li><a id="p76" data-p="76">素养元素-行善利他</a></li>
-				  <li><a id="p86" data-p="86">附录一-开卷有益</a></li>
-				  <li><a id="p113" data-p="113">附录二-商务礼仪</a></li>
+				  <li><a id="p2" data-p="2" class="menu-active">董事长寄语</a></li>
+				  <li><a id="p3" data-p="3">卷首语</a></li>
+				  <li><a id="p7" data-p="7">“八宝奇珍”概述</a></li>
+				  <li><a id="p9" data-p="9">素养元素-积极进取</a></li>
+				  <li><a id="p20" data-p="20">素养元素-敏思笃行</a></li>
+				  <li><a id="p30" data-p="30">素养元素-诚信正直</a></li>
+				  <li><a id="p39" data-p="39">素养元素-谦逊务实</a></li>
+				  <li><a id="p49" data-p="49">素养元素-热情友善</a></li>
+				  <li><a id="p57" data-p="57">素养元素-有礼有节</a></li>
+				  <li><a id="p65" data-p="65">素养元素-思恩敬畏</a></li>
+				  <li><a id="p77" data-p="77">素养元素-行善利他</a></li>
+				  <li><a id="p85" data-p="85">附录一-开卷有益</a></li>
+				  <li><a id="p117" data-p="117">附录二-商务礼仪</a></li>
+					
+<!--			  <li><a href="pc_reading.html?p=2">董事长寄语</a></li>
+				  <li><a href="pc_reading.html?p=3">卷首语</a></li>
+				  <li><a href="pc_reading.html?p=7">“八宝奇珍”概述</a></li>
+				  <li><a href="pc_reading.html?p=9">素养元素-积极进取</a></li>
+				  <li><a href="pc_reading.html?p=20">素养元素-敏思笃行</a></li>
+				  <li><a href="pc_reading.html?p=30">素养元素-诚信正直</a></li>
+				  <li><a href="pc_reading.html?p=39">素养元素-谦逊务实</a></li>
+				  <li><a href="pc_reading.html?p=49">素养元素-热情友善</a></li>
+				  <li><a href="pc_reading.html?p=57">素养元素-有礼有节</a></li>
+				  <li><a href="pc_reading.html?p=65">素养元素-思恩敬畏</a></li>
+				  <li><a href="pc_reading.html?p=77">素养元素-行善利他</a></li>
+				  <li><a href="pc_reading.html?p=85">附录一-开卷有益</a></li>
+				  <li><a href="pc_reading.html?p=117">附录二-商务礼仪</a></li>-->
+					
 				</ul>
 			</div>
 		</div>
@@ -72,9 +89,9 @@
 			
 			
 			//组织载入图片
-			let src='books/zbgpfdn/pc/031722104939_0yl_';
+			let src='books/zbgpfdn/pc/P';
 			let pics=[]
-			let pages=121;
+			let pages=133;
 			for(let i=1;i<=pages;i++){
 			   let picSrc=src+i+'.png';
 			   pics.push(picSrc);
@@ -174,12 +191,12 @@
 								if($("#p"+page).length>0){
 									$("#top .section-name").text($("#p"+page).text());
 								}
-								
-								
-								
+
 								if(page<total){
 									$("#next_page").prop('disabled',false).css('visibility','visible');
 								}
+								
+								localStorage.setItem('p',page);
 							}
 						}
 

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>至不甘平凡的你-员工培训手册</title>
-		<link rel="stylesheet" href="css/pc.css">
+		<link rel="stylesheet" href="css/pc.css?v=1">
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script>
 			
@@ -13,7 +13,14 @@
 					if(res.Code==200){
 						$("#book_infos .num").text(res.Data[0].ClickNum);
 					}
-				})
+				});
+				
+				var p=localStorage.getItem('p');
+				console.log(p);
+				if(p!=null || $.trim(p)!=''){
+					$("#start_read").css('display','none');
+					$("#continue_read").attr('href','pc_reading.html?p='+p).css('display','block');
+				}
 			})
 			
 
@@ -51,7 +58,8 @@
 							</div>
 							<div class="bottom-txt">阅读此书</div>
 						</div>
-						<a href="pc_reading.html?p=1" class="btn-start-read">开始阅读</a>
+						<a id="start_read" href="pc_reading.html?p=1" class="btn-start-read">开始阅读</a>
+						<a id="continue_read" class="btn-start-read btn-con-read">继续阅读</a>
 					</div>
 					
 				</div>	
@@ -60,19 +68,19 @@
 			<section id="book_menu">
 				<h3 class="menu-txt">目录</h3>
 				<ul id="menu_list">
-				  <li><a href="pc_reading.html?p=1">董事长寄语</a></li>
-				  <li><a href="pc_reading.html?p=1">卷首语</a></li>
-				  <li><a href="pc_reading.html?p=1">“八宝奇珍”概述</a></li>
-				  <li><a href="pc_reading.html?p=6">素养元素-积极进取</a></li>
-				  <li><a href="pc_reading.html?p=16">素养元素-敏思笃行</a></li>
-				  <li><a href="pc_reading.html?p=26">素养元素-诚信正直</a></li>
-				  <li><a href="pc_reading.html?p=36">素养元素-谦逊务实</a></li>
-				  <li><a href="pc_reading.html?p=46">素养元素-热情友善</a></li>
-				  <li><a href="pc_reading.html?p=56">素养元素-有礼有节</a></li>
-				  <li><a href="pc_reading.html?p=66">素养元素-思恩敬畏</a></li>
-				  <li><a href="pc_reading.html?p=76">素养元素-行善利他</a></li>
-				  <li><a href="pc_reading.html?p=86">附录一-开卷有益</a></li>
-				  <li><a href="pc_reading.html?p=113">附录二-商务礼仪</a></li>
+				  <li><a href="pc_reading.html?p=2">董事长寄语</a></li>
+				  <li><a href="pc_reading.html?p=3">卷首语</a></li>
+				  <li><a href="pc_reading.html?p=7">“八宝奇珍”概述</a></li>
+				  <li><a href="pc_reading.html?p=9">素养元素-积极进取</a></li>
+				  <li><a href="pc_reading.html?p=20">素养元素-敏思笃行</a></li>
+				  <li><a href="pc_reading.html?p=30">素养元素-诚信正直</a></li>
+				  <li><a href="pc_reading.html?p=39">素养元素-谦逊务实</a></li>
+				  <li><a href="pc_reading.html?p=49">素养元素-热情友善</a></li>
+				  <li><a href="pc_reading.html?p=57">素养元素-有礼有节</a></li>
+				  <li><a href="pc_reading.html?p=65">素养元素-思恩敬畏</a></li>
+				  <li><a href="pc_reading.html?p=77">素养元素-行善利他</a></li>
+				  <li><a href="pc_reading.html?p=85">附录一-开卷有益</a></li>
+				  <li><a href="pc_reading.html?p=117">附录二-商务礼仪</a></li>
 				</ul>
 			</section>
 		
