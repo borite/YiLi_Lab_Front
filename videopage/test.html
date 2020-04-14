@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>生而平凡 终为不凡</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+	<style>
+		*{margin: 0px; padding: 0px;}
+		html,body{
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+		}
+		#wrap{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#v{ 
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+		.duan{
+			line-height: 26px;
+			text-align: center;
+			color: #5B5B5B;
+		}
+	</style>
+</head>
+
+<body>
+	<script>
+		
+		$(function(){
+			if (GetQueryString("code") === null || GetQueryString("code")==="" ) {
+				var url = location.href;
+					url = encodeURIComponent(url);
+        			top.location = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4a873d58da246519&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+			}else{
+				 let u=window.location.href.replace('http://','https://');
+				 $.get("https://www.bigxia.cn/wechat/api/wxticket.ashx", { "cur_url": u }).done(function (res) {
+					var rJson = JSON.parse(res);
+					console.log(rJson);
+					wx.config({
+						debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+						appId: rJson.appId, // 必填，公众号的唯一标识
+						timestamp: rJson.timestamp, // 必填，生成签名的时间戳
+						nonceStr: rJson.Noncestr, // 必填，生成签名的随机串
+						signature: rJson.Signature,// 必填，签名
+						jsApiList: ["updateAppMessageShareData", "updateTimelineShareData"] // 必填，需要使用的JS接口列表
+					});
+					wx.ready(function () {				
+						wx.updateAppMessageShareData({
+							title: '伊利人才素养·八宝奇珍|生而平凡，终为不凡', // 分享标题
+							desc: '我和更好的我之间,还有多远的距离？', // 分享描述
+							link: 'https://customer.imotstudio.net/yili/library51/videopage/test.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+							imgUrl: 'https://customer.imotstudio.net/yili/library51/videopage/p.jpg', // 分享图标
+							success: function () {
+								//alert("试试分享给朋友");
+							}
+						});
+						wx.updateTimelineShareData({
+							title: '伊利人才素养·八宝奇珍|生而平凡，终为不凡', // 分享标题
+							link: 'https://customer.imotstudio.net/yili/library51/videopage/test.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+							imgUrl: 'https://customer.imotstudio.net/yili/library51/videopage/p.jpg', // 分享图标
+							success: function () {
+								// 设置成功
+							}
+						})
+					});
+
+				 }).fail(function(jqXHR, textStatus){
+					 alert("Request failed: " + textStatus);
+				 })
+			}
+		});
+		
+		//获取URL中指定的参数值
+		function GetQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+			var context = "";
+			if (r !== null)
+				context = r[2];
+			reg = null;
+			r = null;
+			return context === null || context === "" || context === "undefined" ? "" : context;
+		}
+	</script>
+	<div id="wrap">
+	    <video autoplay
+			   x5-video-player-type="h5" 
+			   x5-video-player-fullscreen="true"
+			   webkit-playsinline="true"
+			   x-webkit-airplay="true"
+			   playsinline="true"
+			   id="v" 
+			   src="../videos/rcsy_l.mp4" 
+			   poster="https://customer.imotstudio.net/yili/library51/videopage/video_bg.png" 
+			   controls>
+		</video>
+	</div>
+
+</body>
+</html>

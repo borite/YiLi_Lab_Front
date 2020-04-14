@@ -5,6 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<title>伊利人才素养手册</title>
 		<link rel="stylesheet" href="css/lab.css?v=1" />
+		<style>
+			.small{display: none;}
+		
+		</style>
 	</head>
 
 	<body style="padding-bottom: 5rem;">
@@ -60,21 +64,21 @@
 			  <li><a href="reading_img.html?p=85">附录一-开卷有益</a></li>
 			  <li><a href="reading_img.html?p=117">附录二-商务礼仪</a></li>
 			</ul>
-<!--			<ul id="menu_list">
-			  <li><a href="reading_img.html?p=1">董事长寄语</a></li>
-			  <li><a href="reading_img.html?p=1">卷首语</a></li>
-			  <li><a href="reading_img.html?p=1">“八宝奇珍”概述</a></li>
-			  <li><a href="reading_img.html?p=6">素养元素-积极进取</a></li>
-			  <li><a href="reading_img.html?p=13">素养元素-敏思笃行</a></li>
-			  <li><a href="reading_img.html?p=23">素养元素-诚信正直</a></li>
-			  <li><a href="reading_img.html?p=32">素养元素-谦逊务实</a></li>
-			  <li><a href="reading_img.html?p=42">素养元素-热情友善</a></li>
-			  <li><a href="reading_img.html?p=50">素养元素-有礼有节</a></li>
-			  <li><a href="reading_img.html?p=57">素养元素-思恩敬畏</a></li>
-			  <li><a href="reading_img.html?p=68">素养元素-行善利他</a></li>
-			  <li><a href="reading_img.html?p=76">附录一-开卷有益</a></li>
-			  <li><a href="reading_img.html?p=108">附录二-商务礼仪</a></li>
-			</ul>-->
+			<ul id="menu_list" class="small">
+			  <li><a href="reading_img.html?p=2">董事长寄语</a></li>
+			  <li><a href="reading_img.html?p=3">卷首语</a></li>
+			  <li><a href="reading_img.html?p=7">“八宝奇珍”概述</a></li>
+			  <li><a href="reading_img.html?p=9">素养元素-积极进取</a></li>
+			  <li><a href="reading_img.html?p=19">素养元素-敏思笃行</a></li>
+			  <li><a href="reading_img.html?p=30">素养元素-诚信正直</a></li>
+			  <li><a href="reading_img.html?p=40">素养元素-谦逊务实</a></li>
+			  <li><a href="reading_img.html?p=50">素养元素-热情友善</a></li>
+			  <li><a href="reading_img.html?p=59">素养元素-有礼有节</a></li>
+			  <li><a href="reading_img.html?p=66">素养元素-思恩敬畏</a></li>
+			  <li><a href="reading_img.html?p=79">素养元素-行善利他</a></li>
+			  <li><a href="reading_img.html?p=87">附录一-开卷有益</a></li>
+			  <li><a href="reading_img.html?p=119">附录二-商务礼仪</a></li>
+			</ul>
 		</section>
 		
 		
@@ -101,7 +105,15 @@
 					if(res.Code==200){
 						$("#read_num").text(res.Data[0].ClickNum);
 					}
-			})
+			});
+			
+			let wHeight=window.innerHeight;		
+			
+			if(wHeight<=700){
+				$("#menu ul").css('display','none');
+				$("#menu ul.small").css('display','block');
+			}
+			
 			
 			var p=localStorage.getItem('p');
 			console.log(p);
