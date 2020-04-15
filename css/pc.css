@@ -282,6 +282,10 @@ body{
 	color:#fff;
 	text-decoration: none;
 }
+.btn-con-read{
+	background: linear-gradient(90deg,#FF600A,#FFA675);
+	display: none;
+}
 
 
 #book_menu {
