@@ -288,10 +288,30 @@ body{
 }
 
 
+#book_intro{
+	margin-top: 15px;
+}
+
+#book_intro .s-title{
+	color: #212832;
+	font-size: 20px;
+	font-weight: 400;
+	margin-top: 40px;
+}
+
+#book_intro p{
+	padding-top: 15px;
+	line-height: 26px;
+	text-indent: 2em;
+	color: #999;
+	font-size: 16px;
+}
+
 #book_menu {
 	border-top: 1px solid rgba(205,205,205,0.5);
 	margin-top: 45px;
 }
+
 
 #book_menu .menu-txt{
 	color: #212832;

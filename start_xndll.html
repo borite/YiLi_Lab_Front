@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>伊利人才素养手册</title>
+		<link rel="stylesheet" href="css/lab.css?v=1" />
+		<style>
+			.small{display: none;}
+		
+		</style>
+	</head>
+
+	<body style="padding-bottom: 5rem;">
+		
+		<button id="back_default">
+			<i class="icon-back"></i>
+			<div style="color: #707070; font-size: 14px;">返回</div>
+		</button>
+		
+		<header id="bookinfo">
+			<img id="book_poster" src="images/xndll.jpg"/>
+			<div id="book_info">
+				<h3 id="book_name">信念的力量文化故事集</h3>
+				<div class="row">
+					<label class="font-1">作者：</label>
+					<span class="font-1">伊利</span>
+				</div>
+				<div class="row">
+					<label class="font-1">分类：</label>
+					<span class="font-1">文化故事</span>
+				</div>
+				<div class="row">
+					<label class="font-1">阅读量：</label>
+					<span id="read_num" class="font-1 color-bule"></span>
+				</div>
+			</div>
+		</header>
+		
+		<!--内容简介-->
+		<section id="book_abstract">
+		    <!-- <h5>序言</h5>
+			<div class="content-text">
+				信念的力量全球百场文化故事分享会圆满收官，分享会上这些公司实现千亿路上关键节点、关键项目、关键时刻积极践行企业文化的动人故事，是我们持续学习和传承的宝贵财富。因此，潘总特别安排打造《信念的力量文化故事集》，记录、沉淀这份精神文化资产。翻开这本故事集，一篇篇全力以赴、攻坚克难的文化故事，在伊利人心中流淌;一群群积极践行企业文化，助力业务更好发展的伊利人群星闪亮。准备好了吗?让我们一起开启伊利文化之旅，走进伊利人必听必讲的文化故事。
+			</div> -->
+		</section>
+		
+		<!--章节目录-->
+		<section id="menu">
+			<h4>章节目录</h4>
+			<ul id="menu_list">
+                <li><a href="./books/xndll/index.html#page/4">01-液态奶事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/9">02-酸奶事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/13">03-奶粉事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/16">04-冷饮事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/19">05-奶酪事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/23">06-集团只能部门文化故事</a></li>
+			</ul>
+			<ul id="menu_list" class="small">
+                <li><a href="./books/xndll/index.html#page/4">01-液态奶事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/9">02-酸奶事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/13">03-奶粉事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/16">04-冷饮事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/19">05-奶酪事业部文化故事</a></li>
+                <li><a href="./books/xndll/index.html#page/23">06-集团只能部门文化故事</a></li>
+			</ul>
+		</section>
+		
+		
+		<!--底部用户信息-->
+		<footer id="user_info">
+			<div id="infos">
+				<span style="font-size: 16px;">欢迎您继续读书</span>
+<!--				<img id="user_head" src="images/head.png"/>
+				<div id="info_area">
+					<div>冷饮部：测试一下姓名</div>
+					<div>阅读总时长：1440小时</div>
+				</div>-->
+			</div>
+			<a id="btn_goon" class="btn_continue" style="display: none;">
+				<div>开始阅读</div>
+				<div>《信念的力量文化故事集》</div>
+			</a>
+		</footer>
+		
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script>
+			$.get("https://customer.imotstudio.net/ylLibary/api/Front/GetBookList?BookID=8").done(function(res){
+					console.log(res);
+					if(res.Code==200){
+						$("#read_num").text(res.Data[0].ClickNum);
+					}
+			});
+			
+			let wHeight=window.innerHeight;		
+			
+			if(wHeight<=700){
+				$("#menu ul").css('display','none');
+				$("#menu ul.small").css('display','block');
+			}
+						
+			
+			$("#btn_goon").css('display','flex').on('touchend',function(e){
+					e.preventDefault();
+					e.stopPropagation();
+					location.href="./books/xndll/index.html";
+			})
+			
+			
+			var btn=document.getElementById("back_default");
+			btn.addEventListener('touchend',function(e){
+				e.preventDefault();
+				location.replace("default.html");
+			})
+		
+		    $("#book_poster").on('touchend',function(){
+				location.replace('reading_img.html?p=1');
+			});
+		
+		</script>
+	</body>
+</html>

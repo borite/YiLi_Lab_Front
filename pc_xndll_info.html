@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>信念的力量文化故事集</title>
+		<link rel="stylesheet" href="css/pc.css?v=1">
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script>
+			
+			$(function(){
+				$.get("https://customer.imotstudio.net/ylLibary/api/Front/GetBookList?BookID=8").done(function(res){
+					console.log(res);
+					if(res.Code==200){
+						$("#book_infos .num").text(res.Data[0].ClickNum);
+					}
+				});
+				
+				// var p=localStorage.getItem('p');
+				// console.log(p);
+				// if(p!=null || $.trim(p)!=''){
+				// 	$("#start_read").css('display','none');
+				// 	$("#continue_read").attr('href','pc_reading.html?p='+p).css('display','block');
+				// }
+			})
+			
+
+		
+		</script>
+	</head>
+
+	<body style="background-color: #f6f7f9; padding-bottom: 0;">
+		<header id="pc_info_top">
+			<div id="pc_info_logo">
+				<a href="pc_index.html"><img src="images/yl_logo_top.png" alt="伊利图书馆"></a>
+				<a href="pc_index.html" class="link-home">
+					<img src="images/home.png" />
+					<span style="font-size: 14px; padding: 0px 8px;">返回主页</span>
+				</a>
+			</div>
+		</header>
+		
+		<section id="pc_info_main">
+			<header id="book_infos">
+				<img class="book-poster" src="images/xndll.jpg"/>
+				<div class="bookinfo">
+					<h4 class="bookname">信念的力量文化故事集</h4>
+					<!--<h5 class="book-sub-name">——内蒙古伊利实业集团股份有限公司人才素养手册</h5>
+					<p class="book-author">伊利集团</p>-->
+<!--					<p class="book-abstract">
+						先做伊利人，后做伊利事，欲出好产品，先塑好人品，我一直认为，素养比能力、知识更重要，是我们选人、用人的首要标准。虽然素养的养成受家庭教育、学校教育、社会教育的长期影响，但是我认为，我们企业需要承担起帮助员工提升素养的责任，让每一个伊利人都能内外兼修，举止得体，充满正能量。我希望每一个伊利人都能在公司的倡导下，高度重视个人素养提升，多看、多学、多思考、多行动，在一点一滴中持续提升个人素养，成就更多的不平凡。——潘刚
+				    </p>-->
+					
+					<div class="book-num">
+						<div class="read-num">
+							<div class="num-top">
+								<span class="num">0</span>
+								<span class="txt">人</span>
+							</div>
+							<div class="bottom-txt">阅读此书</div>
+						</div>
+						<a id="start_read" href="./books/xndll/index.html" class="btn-start-read">开始阅读</a>
+						<!-- <a id="continue_read" class="btn-start-read btn-con-read">继续阅读</a> -->
+					</div>
+					
+				</div>	
+			</header>
+			
+			<section id="book_intro">
+				<!-- <h3 class="s-title">序言</h3>
+				<p>信念的力量全球百场文化故事分享会圆满收官，分享会上这些公司实现千亿路上关键节点、关键项目、关键时刻积极践行企业文化的动人故事，是我们持续学习和传承的宝贵财富。因此，潘总特别安排打造《信念的力量文化故事集》，记录、沉淀这份精神文化资产。翻开这本故事集，一篇篇全力以赴、攻坚克难的文化故事，在伊利人心中流淌;一群群积极践行企业文化，助力业务更好发展的伊利人群星闪亮。准备好了吗?让我们一起开启伊利文化之旅，走进伊利人必听必讲的文化故事。</p> -->
+			</section>
+
+			<section id="book_menu">
+				<h3 class="menu-txt">目录</h3>
+				<ul id="menu_list">
+				  <li><a href="./books/xndll/index.html#page/4">01-液态奶事业部文化故事</a></li>
+				  <li><a href="./books/xndll/index.html#page/9">02-酸奶事业部文化故事</a></li>
+				  <li><a href="./books/xndll/index.html#page/14">03-奶粉事业部文化故事</a></li>
+				  <li><a href="./books/xndll/index.html#page/17">04-冷饮事业部文化故事</a></li>
+				  <li><a href="./books/xndll/index.html#page/20">05-奶酪事业部文化故事</a></li>
+				  <li><a href="./books/xndll/index.html#page/24">06-集团只能部门文化故事</a></li>
+				</ul>
+			</section>
+		
+		
+		</section>
+		
+		
+
+		<footer id="ft" style="bottom: 0; position: inherit;">
+			<span>Copyright © 2020 Yili Group. All Rights Reserved.</span>
+			<span>伊利图书馆-</span>
+			<span>上海光本文化传媒-技术支持</span>
+		</footer>
+		
+		
+	</body>
+</html>
